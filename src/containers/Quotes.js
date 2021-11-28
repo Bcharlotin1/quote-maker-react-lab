@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import QuoteCard from '../components/QuoteCard';
-import { removeQuote } from '../actions/quotes';
+import { removeQuote, upvoteQuote, downvoteQuote} from '../actions/quotes';
 
 class Quotes extends Component {
 
@@ -23,7 +23,13 @@ class Quotes extends Component {
                */}
                {/* {this.props.quotes.map(q => <QuoteCard {...q} />)} */}
                {/* prefered method, desn each quote to com back to be displayed  */}
-               {this.props.quotes.map(q => <QuoteCard key={q.id}quote={q} removeQuote={this.props.removeQuote} />)}
+               {this.props.quotes.map(q => <QuoteCard 
+               key={q.id}
+               quote={q}
+               removeQuote={this.props.removeQuote} 
+               upvoteQuote={this.props.upvoteQuote}
+               downvoteQuote={this.props.downvoteQuote}
+               />)}
                {/* lab way */}
               
                
@@ -49,7 +55,9 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
   return{
-    removeQuote:  (id) => dispatch(removeQuote(id))
+    removeQuote: (id) => dispatch(removeQuote(id)),
+    upvoteQuote: (id) => dispatch(upvoteQuote(id)),
+    downvoteQuote: (id) => dispatch(downvoteQuote(id))
   }
 }
 
