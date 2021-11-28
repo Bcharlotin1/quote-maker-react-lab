@@ -1,3 +1,4 @@
+
 export default (state = [], action) => {
   switch(action.type) {
     
@@ -18,16 +19,26 @@ export default (state = [], action) => {
       }
       
 
-      return {
-        ...this.state.slice(0, indx),
+      return [
+        ...state.slice(0, indx),
         newQuote,
-        ...this.state.slice(indx + 1)
-      };
+        ...state.slice(indx + 1)
+      ];
     
     case "DOWNVOTE_QUOTE":
   
+      const downIndx = state.findIndex(q=> q.id === action.quoteId) 
+      const downNewQuote = {
+        ...state[downIndx],
+        votes: state[downIndx].votes -1
+      }
       
-      return state;
+
+      return [
+        ...state.slice(0, downIndx),
+        downNewQuote,
+        ...state.slice(downIndx -0)
+      ];
 
     default:
       return state;
