@@ -25,6 +25,7 @@ class QuoteForm extends Component {
     // Create quote object from state
     const quote ={
       id: uuid(),
+      votes: 0,
       author: this.state.author,
       content: this.state.content
     }

@@ -9,6 +9,25 @@ export default (state = [], action) => {
       const newQuotes = state.filter(q => q.id !== action.quoteId)
       
       return newQuotes;
+    
+    case "UPVOTE_QUOTE":
+      const indx = state.findIndex(q=> q.id === action.quoteId) 
+      const newQuote = {
+        ...state[indx],
+        votes: state[indx].votes +1
+      }
+      
+
+      return {
+        ...this.state.slice(0, indx),
+        newQuote,
+        ...this.state.slice(indx + 1)
+      };
+    
+    case "DOWNVOTE_QUOTE":
+  
+      
+      return state;
 
     default:
       return state;
